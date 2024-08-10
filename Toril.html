@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sword Coast Map with Markers</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #map {
+            height: 100vh;
+            width: 100%;
+        }
+        #coordinates {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(3, 3, 3, 0.8);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            color: #f1eeee;
+            z-index: 1000; /* Ensure it stays on top of the map */
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <div id="coordinates">Hover over the map to see coordinates</div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // Define the image's aspect ratio
+        var imageWidth = 8172;  
+        var imageHeight = 3422;
+        var imageUrl = 'source/Toril.jpeg';
+
+        // Calculate the bounds for the image (in this case, just use pixel values)
+        var southWest = [0, 0];
+        var northEast = [imageHeight, imageWidth];
+        var bounds = [southWest, northEast];
+
+        // Initialize the Leaflet map
+        var map = L.map('map', {
+            crs: L.CRS.Simple, // Use a simple coordinate reference system
+            minZoom: -1,       // Allow zooming out further to view the entire image
+            maxZoom: 2         // Set the max zoom level for the map
+        });
+
+        // Add the image overlay
+        L.imageOverlay(imageUrl, bounds).addTo(map);
+
+        // Set the initial view of the map to fit the image
+        map.fitBounds(bounds);
+
+        // Add markers to the map
+        var marker1 = L.marker([2631, 2426]).addTo(map);
+        marker1.bindPopup("<b><a href='./Cities/baldurs-gate.html'>Baldur's Gate</a></b><br>A bustling port city.");
+
+        var marker3 = L.marker([2500, 1000]).addTo(map);
+        marker3.bindPopup("<b>Neverwinter</b><br>The Jewel of the North.").openPopup();
+
+        // Update the coordinates on mouseover
+        map.on('mousemove', function(e) {
+            var coord = e.latlng;
+            document.getElementById('coordinates').innerHTML = 
+                'Coordinates: ' + Math.round(coord.lat) + ', ' + Math.round(coord.lng);
+        });
+    </script>
+</body>
+</html>
