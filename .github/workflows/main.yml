@@ -3,39 +3,30 @@ name: Deploy to Azure Web App
 on:
   push:
     branches:
-      - main  # Trigger the workflow on push to the main branch
+      - main
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
+    - name: Checkout code
       uses: actions/checkout@v2
 
     - name: Setup Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '16'  # Update to a compatible Node.js version
+        node-version: '14'
 
     - name: Install dependencies
       run: npm install
 
-    - name: Debug - List directory contents
-      run: ls -la
+    - name: Build project
+      run: npm run build
 
-    - name: Deploy
-      run: |
-        npm install -g gh-pages
-        gh-pages -d .  # Publish the contents of the root directory
-
-    - name: 'Deploy to Azure WebApp'
+    - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
       with:
-        app-name: ${{ secrets.AZURE_WEBAPP_NAME }}
-        publish-profile: ${{ secrets.AZURE_CREDENTIALS }}
-        package: "./"
-
-    - name: Post Deployment Cleanup
-      run: |
-        rm -rf .git
+        app-name: 'YOUR_WEB_APP_NAME'
+        slot-name: 'production'
+        publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_8943B02A4BB149D0AEF26FA10EAD3A4B }}
