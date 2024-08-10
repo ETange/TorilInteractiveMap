@@ -41,6 +41,9 @@ jobs:
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
     - name: Deploy to Azure Web App
       id: deploy-to-webapp
       uses: azure/webapps-deploy@v2
@@ -49,7 +52,6 @@ jobs:
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_2fad66d89890472580767c8d3071406a }}
         images: 'mcr.microsoft.com/appsvc/staticsite:${{ github.sha }}'
-
 
 
 # # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
