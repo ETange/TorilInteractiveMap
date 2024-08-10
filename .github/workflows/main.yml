@@ -16,13 +16,12 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '14'
+        node-version: '16'  # Update to a compatible Node.js version
 
     - name: Deploy
       run: |
         npm install -g gh-pages
         gh-pages -d .  # Publish the contents of the root directory
-      
 
     - name: 'Deploy to Azure WebApp'
       uses: azure/webapps-deploy@v2
@@ -30,7 +29,7 @@ jobs:
         app-name: ${{ secrets.AZURE_WEBAPP_NAME }}
         publish-profile: ${{ secrets.AZURE_CREDENTIALS }}
         package: "./"
-        
+
     - name: Post Deployment Cleanup
       run: |
         rm -rf .git
