@@ -1,0 +1,7 @@
+version: '3'
+services:
+  web:
+    image: toril-interactive-map
+    build: .
+    ports:
+      - "80:80"
