@@ -1,56 +1,3 @@
-<!-- 
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Baldur's Gate</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <style>
-        #map {
-            height: 130vh;
-            width: 200%;
-        }
-    </style>
-</head>
-<body>
-    <div id="map"></div>
-
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script>
-        // Define the image's aspect ratio
-        var imageWidth = 5025;  
-        var imageHeight = 3338;
-        var imageUrl = 'Baldur.jpg';
-
-        // Calculate the bounds for the image (in this case, just use pixel values)
-        var southWest = [0, 0];
-        var northEast = [imageHeight, imageWidth];
-        var bounds = [southWest, northEast];
-
-        // Initialize the Leaflet map
-        var map = L.map('map', {
-            crs: L.CRS.Simple, // Use a simple coordinate reference system
-            minZoom: -1,       // Allow zooming out further to view the entire image
-            maxZoom: 2         // Set the max zoom level for the map
-        });
-
-        // Add the image overlay
-        L.imageOverlay(imageUrl, bounds).addTo(map);
-
-        // Set the initial view of the map to fit the image
-        map.fitBounds(bounds);
-
-        <p>
-        <a href="index.html">Back to Sword Coast Map</a>
-        </p>
-
-    </script>
-</body>
-</html>
- -->
-
  <!DOCTYPE html>
  <html lang="en">
  <head>
@@ -83,12 +30,12 @@
             font-family: Arial, sans-serif;
             font-size: 14px;
             color: #f1eeee;
-            z-index: 1000; /* Ensure it stays on top of the map */
+            z-index: 1000; 
         }
      </style>
  </head>
  <body>
-     <a href="index.html" id="back-link">Back to Sword Coast Map</a>
+     <a href="../Toril.html" id="back-link">Back to Sword Coast Map</a>
      <div id="map"></div>
      <div id="coordinates">Hover over the map to see coordinates</div>
 

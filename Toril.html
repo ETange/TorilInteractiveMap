@@ -53,12 +53,15 @@
         // Set the initial view of the map to fit the image
         map.fitBounds(bounds);
 
-        // Add markers to the map
-        var marker1 = L.marker([2631, 2426]).addTo(map);
-        marker1.bindPopup("<b><a href='./Cities/baldurs-gate.html'>Baldur's Gate</a></b><br>A bustling port city.");
+        // Add Places to the map
+        var Baldur = L.marker([2631, 2426]).addTo(map);
+        Baldur.bindPopup("<b><a href='./Cities/baldurs-gate.html'>Baldur's Gate</a></b><br>A bustling port city.");
 
-        var marker3 = L.marker([2500, 1000]).addTo(map);
-        marker3.bindPopup("<b>Neverwinter</b><br>The Jewel of the North.").openPopup();
+        // OLD
+        // var Neverwinter = L.marker([2500, 1000]).addTo(map);
+        // Neverwinter.bindPopup("<b>Neverwinter</b><br>The Jewel of the North.").openPopup();
+        var Neverwinter = L.marker([2903, 2212]).addTo(map);
+        Neverwinter.bindPopup("<b><a href='./Cities/Neverwinter.html'>Neverwinter</b><br>The Jewel of the North.");
 
         // Update the coordinates on mouseover
         map.on('mousemove', function(e) {

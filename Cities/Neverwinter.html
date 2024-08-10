@@ -1,0 +1,88 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Neverwinter</title>
+     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+     <style>
+         #map {
+             height: 100vh;
+             width: 100%;
+         }
+         #back-link {
+             position: absolute;
+             top: 10px;
+             left: 10px;
+             background: rgba(255, 255, 255, 0.8);
+             padding: 5px 10px;
+             border-radius: 5px;
+             text-decoration: none;
+             color: #000;
+         }
+         #coordinates {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(3, 3, 3, 0.8);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            color: #f1eeee;
+            z-index: 1000; 
+        }
+     </style>
+ </head>
+ <body>
+     <a href="../Toril.html" id="back-link">Back to Sword Coast Map</a>
+     <div id="map"></div>
+     <div id="coordinates">Hover over the map to see coordinates</div>
+
+     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+     <script>
+         var imageWidth = 4250;
+         var imageHeight = 3284;
+         var imageUrl = '../Source/Neverwinter.jpg';
+ 
+         var southWest = [0, 0];
+         var northEast = [imageHeight, imageWidth];
+         var bounds = [southWest, northEast];
+ 
+         var map = L.map('map', {
+             crs: L.CRS.Simple,
+             minZoom: -1,
+             maxZoom: 2
+         });
+ 
+         L.imageOverlay(imageUrl, bounds).addTo(map);
+         map.fitBounds(bounds);
+ 
+         // Add markers to the Neverwinter map
+         var marker1 = L.marker([750, 1000]).addTo(map);
+         marker1.bindPopup("<b>High Hall</b><br>The seat of Baldur's Gate government.");
+ 
+         var marker2 = L.marker([1200, 600]).addTo(map);
+         marker2.bindPopup("<b>Eastway</b><br>The bustling market district.");
+ 
+         var marker3 = L.marker([400, 1400]).addTo(map);
+         marker3.bindPopup("<b>Gray Harbor</b><br>The primary port of Baldur's Gate.");
+
+         var Exit1 = L.marker([464, 1586]).addTo(map);
+         Exit1.bindPopup("<b><a href='../Toril.html'>Toril</a></b><br>Back to Toril");
+
+         var Exit2 = L.marker([709, 3689]).addTo(map);
+         Exit2.bindPopup("<b><a href='../Toril.html'>Toril</a></b><br>Back to Toril");
+
+        
+        map.on('mousemove', function(e) {
+            var coord = e.latlng;
+            document.getElementById('coordinates').innerHTML = 
+                'Coordinates: ' + Math.round(coord.lat) + ', ' + Math.round(coord.lng);
+        });
+
+     </script>
+ </body>
+ </html>
+ 
+ 
