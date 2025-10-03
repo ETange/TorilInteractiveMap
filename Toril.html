@@ -29,46 +29,6 @@
     <div id="coordinates">Hover over the map to see coordinates</div>
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script>
-        // Define the image's aspect ratio
-        var imageWidth = 8172;  
-        var imageHeight = 3422;
-        var imageUrl = 'source/Toril.jpeg';
-
-        // Calculate the bounds for the image (in this case, just use pixel values)
-        var southWest = [0, 0];
-        var northEast = [imageHeight, imageWidth];
-        var bounds = [southWest, northEast];
-
-        // Initialize the Leaflet map
-        var map = L.map('map', {
-            crs: L.CRS.Simple, // Use a simple coordinate reference system
-            minZoom: -1,       // Allow zooming out further to view the entire image
-            maxZoom: 2         // Set the max zoom level for the map
-        });
-
-        // Add the image overlay
-        L.imageOverlay(imageUrl, bounds).addTo(map);
-
-        // Set the initial view of the map to fit the image
-        map.fitBounds(bounds);
-
-        // Add Places to the map
-        var Baldur = L.marker([2631, 2426]).addTo(map);
-        Baldur.bindPopup("<b><a href='./Cities/baldurs-gate.html'>Baldur's Gate</a></b><br>A bustling port city.");
-
-        // OLD
-        // var Neverwinter = L.marker([2500, 1000]).addTo(map);
-        // Neverwinter.bindPopup("<b>Neverwinter</b><br>The Jewel of the North.").openPopup();
-        var Neverwinter = L.marker([2903, 2212]).addTo(map);
-        Neverwinter.bindPopup("<b><a href='./Cities/Neverwinter.html'>Neverwinter</b><br>The Jewel of the North.");
-
-        // Update the coordinates on mouseover
-        map.on('mousemove', function(e) {
-            var coord = e.latlng;
-            document.getElementById('coordinates').innerHTML = 
-                'Coordinates: ' + Math.round(coord.lat) + ', ' + Math.round(coord.lng);
-        });
-    </script>
+    <script src="Source/main.js"></script>
 </body>
 </html>
