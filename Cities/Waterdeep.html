@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waterdeep</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #map {
+            height: 100vh;
+            width: 100%;
+        }
+        #back-link {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 5px 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #000;
+        }
+        #coordinates {
+           position: absolute;
+           top: 10px;
+           right: 10px;
+           background: rgba(3, 3, 3, 0.8);
+           padding: 5px 10px;
+           border-radius: 5px;
+           font-family: Arial, sans-serif;
+           font-size: 14px;
+           color: #f1eeee;
+           z-index: 1000;
+       }
+    </style>
+</head>
+<body>
+    <a href="../Toril.html" id="back-link">Back to Sword Coast Map</a>
+    <div id="map"></div>
+    <div id="coordinates">Hover over the map to see coordinates</div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // TODO: Add a map image for Waterdeep in the Source directory
+        var imageWidth = 4000; // Placeholder width
+        var imageHeight = 4000; // Placeholder height
+        var imageUrl = '../Source/Waterdeep.jpg'; // Placeholder image
+
+        var southWest = [0, 0];
+        var northEast = [imageHeight, imageWidth];
+        var bounds = [southWest, northEast];
+
+        var map = L.map('map', {
+            crs: L.CRS.Simple,
+            minZoom: -1,
+            maxZoom: 2
+        });
+
+        L.imageOverlay(imageUrl, bounds).addTo(map);
+        map.fitBounds(bounds);
+
+        // Add a placeholder marker
+        var marker1 = L.marker([2000, 2000]).addTo(map);
+        marker1.bindPopup("<b>Castle Waterdeep</b><br>The center of the city's government.");
+
+        var Exit1 = L.marker([464, 1586]).addTo(map);
+        Exit1.bindPopup("<b><a href='../Toril.html'>Toril</a></b><br>Back to Toril");
+
+        map.on('mousemove', function(e) {
+           var coord = e.latlng;
+           document.getElementById('coordinates').innerHTML =
+               'Coordinates: ' + Math.round(coord.lat) + ', ' + Math.round(coord.lng);
+       });
+
+    </script>
+</body>
+</html>
